@@ -1,6 +1,9 @@
 FROM python:3.11.3-alpine3.18
 LABEL mantainer="pstsouza13@gmail.com"
 
+# Instalar o cliente PostgreSQL
+RUN apk update && apk add postgresql-client
+
 # This environment variable is used to control whether Python should
 # write bytecode (.pyc) files to disk. 1 = No, 0 = yes
 ENV PYTHONDONTWRITEBYTECODE 1
@@ -47,4 +50,4 @@ ENV PATH="/scripts:/venv/bin:$PATH"
 USER duser
 
 # Execute the file scripts/commands.sh
-CMD ["commands.sh"]
+CMD ["/scripts/commands.sh"]
