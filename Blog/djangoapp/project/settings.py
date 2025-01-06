@@ -164,7 +164,7 @@ SUMMERNOTE_CONFIG = {
         },
     },
     'css':(
-        'https://cdn.jsdelivr.net/npm/@uiw/codemirror-theme-dracula@4.23.7/cjs/index.min.js',
+        'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.12/theme/dracula.min.css',
     ),
     'attachment_filesize_limit': 30 * 1024 * 1024,
     'attachment_model': 'blog.PostAttachment',
