@@ -1,6 +1,7 @@
 from django.db import models
-from utils.random_letters import slugify_new
 from django.contrib.auth.models import User
+from utils.random_letters import slugify_new
+from utils.images import resize_image
 
 
 class Tag(models.Model):
@@ -134,6 +135,16 @@ class Post(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify_new(self.title, 4)
+
+        current_cover_name = str(self.cover.name)
+        super().save(*args, **kwargs)
+        cover_changed = False
+
+        if self.cover:
+            cover_changed = current_cover_name != self.cover.name
+
+        if cover_changed:
+            resize_image(self.cover, 900)
 
         return super().save(*args, **kwargs)
     
