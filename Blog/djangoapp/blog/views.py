@@ -98,7 +98,6 @@ def page(request, slug):
         .first()
     )
 
-
     return render(
         request,
         'blog/pages/page.html',
