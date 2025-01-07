@@ -1,5 +1,6 @@
 from django.core.paginator import Paginator
 from django.shortcuts import render
+from django.db.models import Q
 from blog.models import Post
 
 PER_PAGE = 9
@@ -52,6 +53,42 @@ def category(request, slug):
     )
 
 
+def tags(request, slug):
+    posts = Post.objects.get_published().filter(tags__slug=slug)
+
+    paginator = Paginator(posts, PER_PAGE)
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
+
+    return render(
+        request,
+        'blog/pages/index.html',
+        {
+            'page_obj': page_obj,
+        }
+    )
+
+
+def search(request):
+    search_value = request.GET.get('search', '').strip()
+    posts = (
+        Post.objects.get_published()
+        .filter(
+            Q(title__icontains=search_value) |
+            Q(excerpt__icontains=search_value) |
+            Q(content__icontains=search_value)
+        )[:PER_PAGE]
+    )
+
+    return render(
+        request,
+        'blog/pages/index.html',
+        {
+            'page_obj': posts,
+            'search_value': search_value,
+        }
+    )
+
 
 def page(request, slug):
 
@@ -74,21 +111,5 @@ def post(request, slug):
         'blog/pages/post.html',
         {
             'post': post,
-        }
-    )
-
-
-def tags(request, slug):
-    posts = Post.objects.get_published().filter(tags__slug=slug)
-
-    paginator = Paginator(posts, PER_PAGE)
-    page_number = request.GET.get("page")
-    page_obj = paginator.get_page(page_number)
-
-    return render(
-        request,
-        'blog/pages/index.html',
-        {
-            'page_obj': page_obj,
         }
     )
