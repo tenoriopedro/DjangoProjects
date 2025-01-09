@@ -69,7 +69,7 @@
                             <a class="post-tag-link" 
                             href="{% url "blog:tags" tag.slug %}">
                                 <i class="fa-solid fa-link"></i>
-                                <span>{{ tag.name }}</span>
+                                <span name="tag">{{ tag.name }}</span>
                             </a>
                         {% endfor %}
                     </div>

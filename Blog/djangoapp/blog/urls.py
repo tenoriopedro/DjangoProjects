@@ -1,14 +1,20 @@
 from django.urls import path
-from blog.views import index, post, page, created_by, category, tags, search
+from blog.views import PostDetailView, PageDetailView, CreatedByListView, CategoryListView, TagsListView, SearchListView, PostListView
 
 app_name = 'blog'
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('post/<slug:slug>/', post, name='post'),
-    path('page/<slug:slug>/', page, name='page'),
-    path('created_by/<int:author_pk>/', created_by, name='created_by'),
-    path('category/<slug:slug>/', category, name='category'),
-    path('tags/<slug:slug>/', tags, name='tags'),
-    path('search/', search, name='search'),
+    path('', PostListView.as_view(), name='index'),
+    path('post/<slug:slug>/', PostDetailView.as_view(), name='post'),
+    path('page/<slug:slug>/', PageDetailView.as_view(), name='page'),
+    path(
+        'created_by/<int:author_pk>/',
+        CreatedByListView.as_view(),
+        name='created_by',
+    ),
+    path('category/<slug:slug>/',
+         CategoryListView.as_view(),
+         name='category'),
+    path('tags/<slug:slug>/', TagsListView.as_view(), name='tags'),
+    path('search/', SearchListView.as_view(), name='search'),
 ]
