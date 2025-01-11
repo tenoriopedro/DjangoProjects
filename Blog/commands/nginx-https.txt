@@ -18,10 +18,6 @@
 # Add contents of this file
 # sudo ln -s /etc/nginx/sites-available/__YOUR_DOMAIN_OR_IP__ /etc/nginx/sites-enabled/__YOUR_DOMAIN_OR_IP__
 #
-# Set timezone
-# List - timedatectl list-timezones
-# sudo timedatectl set-timezone America/Sao_Paulo
-#
 # HTTP
 server {
   listen 80;

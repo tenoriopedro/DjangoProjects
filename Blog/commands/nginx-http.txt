@@ -6,10 +6,6 @@
 # __STATIC_ABSOLUTE_PATH__ = Replace with the path to the folder for static files
 # __MEDIA_ABSOLUTE_PATH__ = Replace with the path to the folder for media files
 # __GUNICORN_FILE_NAME__ = Replace with your unix socket name (don't add .socket)
-# 
-# Set timezone
-# List - timedatectl list-timezones
-# sudo timedatectl set-timezone America/Sao_Paulo
 #
 # HTTP
 server {
