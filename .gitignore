@@ -9,6 +9,9 @@ media/
 project/local_settings.py
 gunicorn-error-log
 __localcode
+Agenda/project/local_settings.py
+ECOMMERCE/
+
 
 # Backup files #
 *.bak
