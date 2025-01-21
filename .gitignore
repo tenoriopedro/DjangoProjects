@@ -11,6 +11,7 @@ gunicorn-error-log
 __localcode
 Agenda/project/local_settings.py
 ECOMMERCE/
+DjangoBasico/
 
 
 # Backup files #
